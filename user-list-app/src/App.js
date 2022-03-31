@@ -1,11 +1,10 @@
-
+import React from 'react'
+import Main from './pages/main/index.tsx'
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
-  );
+    <Main />
+  )
 }
 
-export default App;
+export default App
