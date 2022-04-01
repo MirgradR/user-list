@@ -1,5 +1,6 @@
 import React from 'react'
-import { AppBar, Box, IconButton, MenuItem, Toolbar } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
+import { NavLink } from '../'
 import styles from './style.module.css'
 
 const Header = () => {
@@ -17,17 +18,14 @@ const Header = () => {
                         RЯ
                     </IconButton>
                     <Box sx={{ display: 'flex' }}>
-                        <MenuItem>
-                            Main
-                        </MenuItem>
-                        <MenuItem>
-                            Users
-                        </MenuItem>
+                        <NavLink title={'Main'} route={'/'} />
+                        <NavLink title={'Users'} route={'/users'} />
                     </Box>
                 </Toolbar>
             </AppBar>
         </Box>
     )
 }
+
 
 export default Header
