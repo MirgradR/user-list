@@ -7,14 +7,28 @@ export type CreateUserAction = {
     payload: User,
 }
 
+export type DeleteUserAction = {
+    type: string,
+    payload: number,
+}
+
 function* createUser(action: CreateUserAction) {
     try {
-        yield put(userSlice.actions.createUserSuccess(action.payload));
+        yield put(userSlice.actions.createUserSuccess(action.payload))
     } catch (error) {
-        yield put(userSlice.actions.createUserError((error as Error).message));
+        yield put(userSlice.actions.createUserError((error as Error).message))
+    }
+}
+
+function* deleteUser(action: DeleteUserAction) {
+    try {
+        yield put(userSlice.actions.deleteUserSuccess(action.payload))
+    } catch (error) {
+        yield put(userSlice.actions.deleteUserError((error as Error).message))
     }
 }
 
 export function* userSaga() {
-    yield takeEvery(userSlice.actions.createUser, createUser);
+    yield takeEvery(userSlice.actions.createUser, createUser)
+    yield takeEvery(userSlice.actions.deleteUser, deleteUser)
 }
