@@ -12,8 +12,12 @@ const Users = () => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
     const [open, setOpen] = React.useState(false)
-    const { createUser } = userSlice.actions
+    const { createUser, deleteUser } = userSlice.actions
     const users: User[] = useAppSelector((state) => state.userReducer.users)
+    
+    const handleDeleteUser = (id: number) => {
+        dispatch(deleteUser(id))
+    }
     
     const handleCreateUser = (user: User) => {
         dispatch(createUser(user))
@@ -21,7 +25,7 @@ const Users = () => {
 
     const renderUsers = () => {
         return users.map((user: User) => {
-            return <RenderUser key={user.id} user={user} />
+            return <RenderUser key={user.id} deleteUser={handleDeleteUser} user={user} />
         })
     }
     return (

@@ -5,9 +5,10 @@ import styles from './style.module.css'
 
 interface Props  {
     user: User,
+    deleteUser: (id: number) => void
 }
 
-const RenderUser: React.FC<Props> = ({user}) => {
+const RenderUser: React.FC<Props> = ({user, deleteUser}) => {
     return (
         <Card className={styles.item} sx={{ minWidth: 275 }}>
             <CardContent>
@@ -26,6 +27,7 @@ const RenderUser: React.FC<Props> = ({user}) => {
             </CardContent>
             <CardActions>
                 <Button size="small">Watch</Button>
+                <Button onClick={() => deleteUser(user.id)} color='error' size="small">Delete</Button>
             </CardActions>
         </Card>
     )
