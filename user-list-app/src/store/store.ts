@@ -21,6 +21,6 @@ const setupStore = configureStore({
 
 sagaMiddleware.run(userSaga);
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof setupStore.getState>
 
 export default setupStore
