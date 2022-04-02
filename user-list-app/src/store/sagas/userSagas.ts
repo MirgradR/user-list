@@ -1,6 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects'
 import { User } from './../../models/Users'
-import { userSlice } from './../reducers/userReducer.ts'
+import { userSlice } from './../reducers/userReducer'
 
 export type CreateUserAction = {
     type: string,

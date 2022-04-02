@@ -1,7 +1,7 @@
 export enum Gender {
+    NOT_SELECTED = 'Not selected',
     MAN = 'Man',
-    WOMAN = 'Woman',
-    NOT_SELECTED = 'Not selected'
+    WOMAN = 'Woman',  
 }
 
 export interface User {
