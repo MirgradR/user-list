@@ -15,7 +15,7 @@ const Users = () => {
     const { createUser, deleteUser } = userSlice.actions
     const users: User[] = useAppSelector((state) => state.userReducer.users)
     const filterGender: string = useAppSelector((state) => state.userReducer.filterGender)
-    
+
     const handleDeleteUser = (id: number) => {
         dispatch(deleteUser(id))
     }
