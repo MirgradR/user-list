@@ -14,7 +14,7 @@ const GenderFilter = () => {
     }
 
     return (
-        <SelectGender handleChange={handleChange} gender={filterGender} />
+        <SelectGender handleChange={handleChange} gender={filterGender as Gender} />
     )
 }
 

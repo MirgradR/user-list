@@ -25,8 +25,11 @@ const SingleUser = () => {
     const handleClose = () => setOpen(false)
     const [open, setOpen] = React.useState(false)
     const users = useAppSelector((state) => state.userReducer.users)
-    const user = users.filter(user => user.id === +id)[0]
-
+    let user: User = {} as User
+    if (id) {
+        user = users.filter(user => user.id === +id)[0]
+    }
+    
     const { deleteUser, editUser } = userSlice.actions
     
     const handleEditUser = (user: User) => {
@@ -38,7 +41,7 @@ const SingleUser = () => {
         dispatch(deleteUser(id))
     }
 
-    if (!user) {
+    if (!users) {
         return (
             <Box className={styles.userInfo}>
                 <Button onClick={() => navigate('/')}>Go to main</Button>
