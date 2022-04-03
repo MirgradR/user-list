@@ -1,4 +1,5 @@
 export enum Gender {
+    ALL = 'All',
     NOT_SELECTED = 'Not selected',
     MAN = 'Man',
     WOMAN = 'Woman',  
