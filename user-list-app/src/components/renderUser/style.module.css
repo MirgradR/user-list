@@ -2,3 +2,18 @@
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
+.card,
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    flex-direction: column;
+}
+
+.buttons {
+    flex-direction: row;
+}
