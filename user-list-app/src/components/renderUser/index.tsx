@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, MenuItem, Typography } from '@mui/material'
 import { User } from '../../models/Users'
+import NavLink from '../navLink'
 import styles from './style.module.css'
 
 interface Props  {
@@ -26,8 +27,8 @@ const RenderUser: React.FC<Props> = ({user, deleteUser}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Watch</Button>
-                <Button onClick={() => deleteUser(user.id)} color='error' size="small">Delete</Button>
+                <Button size="small"><NavLink title={'Watch'} route={`/users/${user.id}`} /></Button>
+                <Button onClick={() => deleteUser(user.id)} color='error' size="small"><MenuItem>Delete</MenuItem></Button>
             </CardActions>
         </Card>
     )
