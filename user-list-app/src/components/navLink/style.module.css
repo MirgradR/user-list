@@ -1,4 +1,10 @@
-.navLink {
-    text-decoration: none;
+.navLink,
+.watchLink {
+   text-decoration: none; 
+}
+.navLink { 
     color: azure;
+}
+.watchLink {
+    color: rgb(57, 57, 232);
 }

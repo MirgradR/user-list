@@ -10,7 +10,7 @@ interface Props {
 
 const NavLink: React.FC<Props> = ({title, route}) => {
     return (
-        <Link className={styles.navLink} to={route}>
+        <Link className={title === 'Watch' ? styles.watchLink : styles.navLink} to={route}>
             <MenuItem>
                 {title}
             </MenuItem>
