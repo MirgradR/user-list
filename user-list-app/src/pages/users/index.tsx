@@ -43,11 +43,13 @@ const Users = () => {
     }
     return (
         <div className={styles.users}>
-            <Dashboard  handleOpen={handleOpen}/>
-            
-            <Box className={styles.usersList}>
-                {renderUsers()}
-            </Box>
+            <Dashboard handleOpen={handleOpen} />
+            {users?.length > 0
+                ? <Box className={styles.usersList}>
+                    {renderUsers()}
+                </Box>
+                : <div className={styles.usersList}>List of users is empty</div>
+            }
             <Modal
                 open={open}
                 onClose={handleClose}
