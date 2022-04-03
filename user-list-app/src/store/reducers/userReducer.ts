@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User } from './../../models/Users'
+import { Gender, User } from './../../models/Users'
 
 export interface UserState {
     users: User[],
     loading: boolean,
     error: string,
+    filterGender: string
 }
 
 const initialState: UserState = {
     users: [],
     loading: false,
     error: '',
+    filterGender: Gender.ALL
 }
 
 export const userSlice = createSlice({
@@ -37,6 +39,18 @@ export const userSlice = createSlice({
             state.loading = false
         },
         deleteUserError(state, action: PayloadAction<string>) {
+            state.error = action.payload
+            state.loading = false
+        },
+        filterByGender(state, action: PayloadAction<string>) {
+            state.loading = true
+        },
+        filterByGenderSuccess(state, action: PayloadAction<string>) {
+            console.log(action.payload)
+            state.filterGender = action.payload
+            state.loading = false
+        },
+        filterByGenderError(state, action: PayloadAction<string>) {
             state.error = action.payload
             state.loading = false
         },

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Modal } from '@mui/material'
-import { User } from '../../models/Users'
+import { Gender, User } from '../../models/Users'
 import { useAppDispatch } from '../../hooks/redux'
 import { useAppSelector } from '../../hooks/redux'
 import { userSlice } from '../../store/reducers/userReducer'
@@ -14,6 +14,7 @@ const Users = () => {
     const [open, setOpen] = React.useState(false)
     const { createUser, deleteUser } = userSlice.actions
     const users: User[] = useAppSelector((state) => state.userReducer.users)
+    const filterGender: string = useAppSelector((state) => state.userReducer.filterGender)
     
     const handleDeleteUser = (id: number) => {
         dispatch(deleteUser(id))
@@ -23,8 +24,20 @@ const Users = () => {
         dispatch(createUser(user))
     }
 
+    const getFilteredUsers = () => {
+        if (filterGender === Gender.MAN) {
+            return users.filter(user => user.gender === Gender.MAN)
+        } else if (filterGender === Gender.NOT_SELECTED) {
+            return users.filter(user => user.gender === Gender.NOT_SELECTED)
+        } else if (filterGender === Gender.WOMAN) {
+            return users.filter(user => user.gender === Gender.WOMAN)
+        } else {
+            return users
+        }
+    }
+
     const renderUsers = () => {
-        return users.map((user: User) => {
+        return getFilteredUsers().map((user: User) => {
             return <RenderUser key={user.id} deleteUser={handleDeleteUser} user={user} />
         })
     }
