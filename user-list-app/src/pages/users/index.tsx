@@ -15,7 +15,7 @@ const Users = () => {
     const { createUser, deleteUser } = userSlice.actions
     const users: User[] = useAppSelector((state) => state.userReducer.users)
     const filterGender: string = useAppSelector((state) => state.userReducer.filterGender)
-    
+
     const handleDeleteUser = (id: number) => {
         dispatch(deleteUser(id))
     }
@@ -43,11 +43,13 @@ const Users = () => {
     }
     return (
         <div className={styles.users}>
-            <Dashboard  handleOpen={handleOpen}/>
-            
-            <Box className={styles.usersList}>
-                {renderUsers()}
-            </Box>
+            <Dashboard handleOpen={handleOpen} />
+            {users?.length > 0
+                ? <Box className={styles.usersList}>
+                    {renderUsers()}
+                </Box>
+                : <div className={styles.usersList}>List of users is empty</div>
+            }
             <Modal
                 open={open}
                 onClose={handleClose}
