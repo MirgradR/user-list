@@ -3,9 +3,9 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { Gender } from '../../models/Users'
 
 interface SelectGenderProps {
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    handleChange: (event: any) => void,
     gender: Gender,
-    isCreating: boolean
+    isCreating?: boolean
 }
 
 export const renderGenderItems = (isCreating: boolean) => {

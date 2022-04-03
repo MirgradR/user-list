@@ -9,7 +9,7 @@ import styles from './style.module.css'
 interface CreateUserFormProps {
   handleCreateUser: (user: User) => void,
   handleClose: () => void,
-  title: string,
+  title?: string,
   user?: User
 }
 
