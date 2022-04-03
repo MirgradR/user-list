@@ -34,7 +34,6 @@ export const userSlice = createSlice({
             state.loading = true
         },
         deleteUserSuccess(state, action: PayloadAction<number>) {
-            console.log(action.payload)
             state.users = state.users.filter(user => user.id !== action.payload)
             state.loading = false
         },
@@ -46,11 +45,24 @@ export const userSlice = createSlice({
             state.loading = true
         },
         filterByGenderSuccess(state, action: PayloadAction<string>) {
-            console.log(action.payload)
             state.filterGender = action.payload
             state.loading = false
         },
         filterByGenderError(state, action: PayloadAction<string>) {
+            state.error = action.payload
+            state.loading = false
+        },
+        editUser(state, action: PayloadAction<User>) {
+            state.loading = true
+        },
+        editUserSuccess(state, action: PayloadAction<User>) {     
+            const changedUserIndex = state.users.findIndex(user => user.id === +action.payload.id);
+            if (changedUserIndex !== -1) {
+                state.users[changedUserIndex] = action.payload
+            }
+            state.loading = false
+        },
+        editUserError(state, action: PayloadAction<string>) {
             state.error = action.payload
             state.loading = false
         },

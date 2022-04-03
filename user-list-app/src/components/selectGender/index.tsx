@@ -14,7 +14,7 @@ export const renderGenderItems = (isCreating: boolean) => {
     genders = genders.filter(gender => gender !== Gender.ALL)
   }
   return genders.map(gender => {
-    return <MenuItem value={gender}>{gender}</MenuItem>
+    return <MenuItem key={gender} value={gender}>{gender}</MenuItem>
   })
 }
 

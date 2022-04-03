@@ -8,11 +8,18 @@ import styles from './style.module.css'
 
 interface CreateUserFormProps {
   handleCreateUser: (user: User) => void,
-  handleClose: () => void
+  handleClose: () => void,
+  title: string,
+  user?: User
 }
 
-const CreateUserForm: React.FC<CreateUserFormProps> = ({handleCreateUser, handleClose}) => {
-  const [gender, setGender] = useState(Gender.NOT_SELECTED)
+const CreateUserForm: React.FC<CreateUserFormProps> = ({
+  handleCreateUser, 
+  handleClose, 
+  title = 'Create User', 
+  user = { email: '', userName: '', gender: Gender.NOT_SELECTED, id: Math.random()  }
+}) => {
+  const [gender, setGender] = useState(user.gender)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGender(event.target.value as Gender)
@@ -21,14 +28,14 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({handleCreateUser, handle
   return (
     <Box className={styles.container}>
       <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
-        Create User
+        {title}
       </Typography>
       <Formik
-        initialValues={{ email: '', userName: '' }}
+        initialValues={{ email: user?.email, userName: user?.userName }}
         validate={validateUserForm}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false)
-          handleCreateUser({ ...values, gender, id: Math.random() })
+          handleCreateUser({ ...values, gender, id: user.id })
           handleClose()
         }}
       >
@@ -40,7 +47,7 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({handleCreateUser, handle
             <ErrorMessage name="userName" component="div" />
             <SelectGender handleChange={handleChange} gender={gender} isCreating={true} />
             <Button type="submit" disabled={isSubmitting}>
-              Create
+              {title === 'Edit User' ? 'Edit' : 'Create'}
             </Button>
           </Form>
         )}

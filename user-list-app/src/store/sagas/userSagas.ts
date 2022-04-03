@@ -41,8 +41,17 @@ function* filterByGender(action: FilterByGenderAction) {
     }
 }
 
+function* editUser(action: CreateUserAction) {
+    try {
+        yield put(userSlice.actions.editUserSuccess(action.payload))
+    } catch (error) {
+        yield put(userSlice.actions.editUserError((error as Error).message))
+    }
+}
+
 export function* userSaga() {
     yield takeEvery(userSlice.actions.createUser, createUser)
     yield takeEvery(userSlice.actions.deleteUser, deleteUser)
     yield takeEvery(userSlice.actions.filterByGender, filterByGender)
+    yield takeEvery(userSlice.actions.editUser, editUser)
 }
